@@ -12,7 +12,7 @@
 
     d3Script.onload = () => 
 
-    customElements.define('com-sap-teched-gauge-01', class Gauge extends HTMLElement {
+    customElements.define('com-sap-teched-01', class Gauge extends HTMLElement {
 
 
         disconnectedCallback () {
@@ -53,6 +53,21 @@
                 this._widgetWidth = this._widgetHeight;
             }
             
+            this.redraw();
+        };
+
+
+        //Getters and Setters
+        get angleMax() {
+            return this._endAngleDeg;
+        }
+        set angleMax(value) {
+            //Empty the shadow dom
+            if (this._svgContainer){
+                this._svgContainer._groups[0][0].innerHTML = "";
+            }
+
+            this._endAngleDeg = value;
             this.redraw();
         };
 
